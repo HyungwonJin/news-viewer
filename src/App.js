@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
-import axios from '../node_modules/axios/index';
+import React, { useCallback, useState } from 'react';
 import NewsList from './components/NewsList';
-// bef5c29764ee43cd828e109dd29fd8ee
+import Categories from './components/Categories';
+
 const App = () => {
-  return <NewsList />;
+  const [category, setCategory] = useState('all');
+  const onSelect = useCallback((category) => setCategory(category), []);
+  return (
+    <>
+      <Categories category={category} onSelect={onSelect} />
+      <NewsList category={category} />
+    </>
+  );
 };
 
 export default App;
